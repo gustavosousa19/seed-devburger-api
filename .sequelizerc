@@ -1,0 +1,7 @@
+const { resolve } =  require('node:path'); // node:path é um módulo interno do node que permite pegar o caminhos exato dos arquivos
+
+module.exports = {
+    config: resolve(__dirname, 'src', 'config', 'database.cjs'), // dirname é uma variável global do node que sempre vai representar o caminho raiz do projeto
+    'models-path': resolve(__dirname, 'src', 'app', 'models'), // caminho que vai salvar os models
+    'migrations-path': resolve(__dirname, 'src', 'database', 'migrations'), // caminho que vai salvar as migrations
+};
