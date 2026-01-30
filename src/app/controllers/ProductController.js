@@ -9,7 +9,7 @@ class ProductController {
         });
 
         try {
-          schema.validateSync(request.body, { abortEarly: false, strict: true }); // VALIDATESYNC -> VALIDAÇÃO SINCRONA DOS DADOS RECEBIDOS NA REQUISIÇÃO, ABORTEARLY -> MOSTRA TODOS OS ERROS DE UMA VEZ, STRICT -> NÃO PERMITE CONVERSÕES AUTOMÁTICAS DE TIPOS  
+          schema.validateSync(request.body, { abortEarly: false }); // VALIDATESYNC -> VALIDAÇÃO SINCRONA DOS DADOS RECEBIDOS NA REQUISIÇÃO, ABORTEARLY -> MOSTRA TODOS OS ERROS DE UMA VEZ, STRICT -> NÃO PERMITE CONVERSÕES AUTOMÁTICAS DE TIPOS  
         } catch (err){
           return response.status(400).json({ error: err.errors });
         }
@@ -18,4 +18,4 @@ class ProductController {
     }
 }
 
-export default new ProductController();
+export default new ProductController(); 
