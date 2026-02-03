@@ -13,6 +13,6 @@ const upload = multer(multerConfig); // CONFIGURAÇÃO DO MULTER PARA UPLOAD DE 
 routes.post('/users', UserController.store); // ROTA DE EXEMPLO QUE CHAMA O MÉTODO STORE DO CONTROLLER
 routes.post('/session', SessionController.store);
 routes.post('/products', upload.single('file'), ProductController.store);
-
+routes.get('/products', ProductController.index);
 
 export default routes;

@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import Product from '../models/Product.js';
 
 class ProductController {
     async store(request, response) {
@@ -14,8 +15,24 @@ class ProductController {
           return response.status(400).json({ error: err.errors });
         }
         
-        return response.status(201).json({ ok: true });
-    }
+        const { name, price, category } = request.body; // DESESTRUTURAÇÃO DOS DADOS RECEBIDOS NA REQUISIÇÃO
+        const { filename } = request.file; // PEGANDO O NOME DO ARQUIVO ENVIADO
+        
+        const newProduct = await Product.create({ // CRIA UM NOVO PRODUTO NO BANCO DE DADOS
+          name,
+          price,
+          category,
+          path: filename,
+        });
+
+        return response.status(201).json(newProduct);
+  }
+
+  async index(_request, response) {
+    const products = await Product.findAll(); // BUSCA TODOS OS PRODUTOS NO BANCO DE DADOS
+    
+    return response.status(200).json(products);
+  }
 }
 
 export default new ProductController(); 
