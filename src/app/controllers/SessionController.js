@@ -1,6 +1,8 @@
 import bcrypt from 'bcrypt';
 import * as Yup from 'yup';
 import User from '../models/User.js';
+import jwt from 'jsonwebtoken';
+import authConfig from './../../config/auth.js';
 
 // VERIFICA SE OS DADOS DE LOGIN SÃO VÁLIDOS
 class SessionController {
@@ -45,12 +47,17 @@ class SessionController {
       emailOrPasswordIncorrect();           
     };
 
+    const token = jwt.sign({ id: existingUser.id}, authConfig.secret,{
+        expiresIn: authConfig.expiresIn,
+      });
+
     // RETORNA OS DADOS DO USUÁRIO
     return response.status(200).json({ 
         id: existingUser.id,
         name: existingUser.name,
         email: existingUser.email,
         admin: existingUser.admin,
+        token,
      });
  }
 }
