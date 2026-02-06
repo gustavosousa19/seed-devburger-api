@@ -47,6 +47,7 @@ class SessionController {
       emailOrPasswordIncorrect();           
     };
 
+    // GERA TOKEN JWT
     const token = jwt.sign({ id: existingUser.id}, authConfig.secret,{
         expiresIn: authConfig.expiresIn,
       });
