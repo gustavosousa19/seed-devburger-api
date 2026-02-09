@@ -5,6 +5,7 @@ import SessionController from './app/controllers/SessionController.js';
 import UserController from './app/controllers/UserController.js';
 import multerConfig from './config/multer.cjs'; // IMPORTA A CONFIGURAÇÃO DO MULTER
 import authMiddleware from './middlewares/auth.js';
+import CategoryController from './app/controllers/CategoryController.js';
 
 const routes = new Router();
 
@@ -16,6 +17,9 @@ routes.post('/session', SessionController.store);
 
 routes.use(authMiddleware); // APLICA O MIDDLEWARE DE AUTENTICAÇÃO PARA TODAS AS ROTAS DEFINIDAS APÓS ESSA LINHA
 routes.post('/products', upload.single('file'), ProductController.store);
-routes.get('/products', authMiddleware, ProductController.index);
+routes.get('/products', ProductController.index);
+
+routes.post('/categories', CategoryController.store);
+routes.get('/categories', CategoryController.index);
 
 export default routes;

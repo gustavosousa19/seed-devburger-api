@@ -4,8 +4,9 @@ import { Sequelize } from "sequelize";
 import Product from "../app/models/Product.js"; // IMPORTANDO A MODEL PRODUCT
 import User from "../app/models/User.js"; // IMPORTANDO A MODEL USER
 import databaseConfig from "../config/database.cjs"; // IMPORTANDO AS CONFIGURAÇÕES DO BANCO DE DADOS
+import Category from "../app/models/Category.js";
 
-const models = [User, Product]; // ADICIONANDO AS MODELS EM UM ARRAY
+const models = [User, Product, Category]; // ADICIONANDO AS MODELS EM UM ARRAY
 
 class Database {
     constructor() { // CONTRUCTOR = FUNÇÃO QUE É EXECUTADA AUTOMATICAMENTE QUANDO A CLASSE É INICIALIZADA
