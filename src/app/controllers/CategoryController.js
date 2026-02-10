@@ -15,6 +15,16 @@ class CategoryController {
         
         const { name } = request.body; // DESESTRUTURAÇÃO DOS DADOS RECEBIDOS NA REQUISIÇÃO
         
+        const existingCategory = await Category.findOne({ // BUSCA NO BANCO DE DADOS SE EXISTE UMA CATEGORIA COM O MESMO NOME
+          where: {
+            name,
+          },
+        });
+
+        if (existingCategory) {
+          return response.status(400).json({ error: "Category already exists" });
+        }
+
         const newCategory = await Category.create({ // CRIA UM NOVO PRODUTO NO BANCO DE DADOS
           name,
         });
