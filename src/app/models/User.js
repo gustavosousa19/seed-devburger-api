@@ -12,6 +12,8 @@ class User extends Model {  // class user se extender a Model de sequelize, isso
             sequelize,
             tableName: 'users', // nome da tabela no banco de dados 
         });
+
+        return this;
     }
 } // created at e updated at são criados automaticamente pelo sequelize, e o id também é criado automaticamente como chave primária
   // primaryKey = true, não precisa declarar!
