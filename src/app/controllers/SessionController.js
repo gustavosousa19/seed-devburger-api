@@ -48,9 +48,13 @@ class SessionController {
     };
 
     // GERA TOKEN JWT
-    const token = jwt.sign({ id: existingUser.id}, authConfig.secret,{
+    const token = jwt.sign(
+      { id: existingUser.id, admin: existingUser.admin},
+      authConfig.secret,
+      {
         expiresIn: authConfig.expiresIn,
-      });
+      },
+    );
 
     // RETORNA OS DADOS DO USUÁRIO
     return response.status(200).json({ 
