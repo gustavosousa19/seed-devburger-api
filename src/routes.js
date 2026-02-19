@@ -21,7 +21,7 @@ routes.post('/products', adminMiddleware, upload.single('file'), ProductControll
 routes.put('/products/:id', adminMiddleware, upload.single('file'), ProductController.update); // ROTA PARA ATUALIZAR UM PRODUTO
 routes.get('/products', ProductController.index); // ROTA PARA LISTAR TODOS OS PRODUTOS
 
-routes.post('/categories', adminMiddleware, CategoryController.store); // ROTA PARA CRIAR UMA CATEGORIA
+routes.post('/categories', adminMiddleware, upload.single('file'), CategoryController.store); // ROTA PARA CRIAR UMA CATEGORIA
 routes.get('/categories', CategoryController.index); // ROTA PARA LISTAR TODAS AS CATEGORIAS
 
 export default routes;
