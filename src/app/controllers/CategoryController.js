@@ -1,6 +1,5 @@
 import * as Yup from 'yup';
 import Category from '../models/Category.js';
-import { where } from 'sequelize';
 
   // CONTROLLER RESPONSÁVEL POR GERENCIAR AS CATEGORIAS DE PRODUTOS
 class CategoryController {
