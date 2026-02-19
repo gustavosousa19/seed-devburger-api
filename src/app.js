@@ -9,6 +9,7 @@ const app = express(); // DECLARA A VARIAVEL APP COMO UMA INSTANCIA DO EXPRESS
 app.use(express.json()); // PERMITE QUE O EXPRESS ENTENDA REQUISIÇÕES COM JSON
 app.use(express.urlencoded({ extended: true })); // PADRÃO DE URL PRA UTILIZAR O BODY
 app.use('/product-file', fileRouteConfig); // ROTA PARA SERVIR OS ARQUIVOS ESTÁTICOS DE PRODUTOS
+app.use('/category-file', fileRouteConfig);
 
 app.use(routes); // UTILIZA AS ROTAS DECLARADAS NO ARQUIVO ROUTES.JS
 

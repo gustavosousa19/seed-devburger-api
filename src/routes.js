@@ -22,6 +22,7 @@ routes.put('/products/:id', adminMiddleware, upload.single('file'), ProductContr
 routes.get('/products', ProductController.index); // ROTA PARA LISTAR TODOS OS PRODUTOS
 
 routes.post('/categories', adminMiddleware, upload.single('file'), CategoryController.store); // ROTA PARA CRIAR UMA CATEGORIA
+routes.put('/categories/:id', adminMiddleware, upload.single('file'), CategoryController.update); // ROTA PARA ATUALIZAR UMA CATEGORIA
 routes.get('/categories', CategoryController.index); // ROTA PARA LISTAR TODAS AS CATEGORIAS
 
 export default routes;
