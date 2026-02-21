@@ -38,6 +38,7 @@ class CategoryController {
         return response.status(201).json(newCategory);
   }
 
+  // MÉTODO PARA ATUALIZAR UMA CATEGORIA EXISTENTE
     async update(request, response) {
       const schema = Yup.object({
         name: Yup.string(),
