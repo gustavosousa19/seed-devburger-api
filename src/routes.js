@@ -26,5 +26,8 @@ routes.post('/categories', adminMiddleware, upload.single('file'), CategoryContr
 routes.put('/categories/:id', adminMiddleware, upload.single('file'), CategoryController.update); // ROTA PARA ATUALIZAR UMA CATEGORIA
 routes.get('/categories', CategoryController.index); // ROTA PARA LISTAR TODAS AS CATEGORIAS
 
-routes.post('/orders', adminMiddleware, OrderController.store); // ROTA PARA CRIAR UM PEDIDO
+routes.post('/orders', OrderController.store); // ROTA PARA CRIAR UM PEDIDO
+routes.get('/orders', OrderController.index); // ROTA PARA LISTAR TODOS OS PEDIDOS
+routes.put('/orders/:id', adminMiddleware, OrderController.update); // ROTA PARA ATUALIZAR O STATUS DE UM PEDIDO
+
 export default routes;
