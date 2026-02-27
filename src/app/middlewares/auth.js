@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import authConfig from './../config/auth.js';
+import authConfig from '../../config/auth.js';
 
 // o authMiddleware verificar se o usuário está autenticado antes de permitir o acesso a rotas protegidas.
 const authMiddleware = (request, response, next) => {
