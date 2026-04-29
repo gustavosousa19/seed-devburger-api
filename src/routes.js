@@ -4,6 +4,7 @@ import CategoryController from './app/controllers/CategoryController.js';
 import OrderController from './app/controllers/OrderController.js';
 import ProductController from './app/controllers/ProductController.js'; // IMPORTA O CONTROLLER DE USUÁRIO
 import SessionController from './app/controllers/SessionController.js';
+import CreatPaymentIntentController from './app/controllers/stripe/CreatPaymentIntentController.js'; // IMPORTA O CONTROLLER PARA CRIAR UM INTENTO DE PAGAMENTO COM O STRIPE
 import UserController from './app/controllers/UserController.js';
 import adminMiddleware from './app/middlewares/admin.js';
 import authMiddleware from './app/middlewares/auth.js';
@@ -30,4 +31,5 @@ routes.post('/orders', OrderController.store); // ROTA PARA CRIAR UM PEDIDO
 routes.get('/orders', OrderController.index); // ROTA PARA LISTAR TODOS OS PEDIDOS
 routes.put('/orders/:id', adminMiddleware, OrderController.update); // ROTA PARA ATUALIZAR O STATUS DE UM PEDIDO
 
+routes.post("/create-payment-intent", CreatPaymentIntentController.store); // ROTA PARA CRIAR UM INTENTO DE PAGAMENTO COM O STRIPE
 export default routes;
