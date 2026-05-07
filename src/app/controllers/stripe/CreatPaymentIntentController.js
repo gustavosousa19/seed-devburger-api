@@ -10,7 +10,7 @@ const calculateOrderAmount = (items) => {
 const total = items.reduce((acc, current) => {
 return current.price * current.quantity + acc
 }, 0)
-return total * 100;
+return total;
 };
 
 // Controller para criar um intento de pagamento com o Stripe
