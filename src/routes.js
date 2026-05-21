@@ -18,14 +18,16 @@ const upload = multer(multerConfig); // CONFIGURAÇÃO DO MULTER PARA UPLOAD DE 
 routes.post('/users', UserController.store); // ROTA DE EXEMPLO QUE CHAMA O MÉTODO STORE DO CONTROLLER
 routes.post('/sessions', SessionController.store); // ROTA PARA CRIAR UMA SESSÃO DE USUÁRIO (LOGIN)
 
+routes.get('/products', ProductController.index); // ROTA PARA LISTAR TODOS OS PRODUTOS
+routes.get('/categories', CategoryController.index); // ROTA PARA LISTAR TODAS AS CATEGORIAS
+
+
 routes.use(authMiddleware); // APLICA O MIDDLEWARE DE AUTENTICAÇÃO PARA TODAS AS ROTAS DEFINIDAS APÓS ESSA LINHA
 routes.post('/products', adminMiddleware, upload.single('file'), ProductController.store); // ROTA PARA CRIAR UM PRODUTO
 routes.put('/products/:id', adminMiddleware, upload.single('file'), ProductController.update); // ROTA PARA ATUALIZAR UM PRODUTO
-routes.get('/products', ProductController.index); // ROTA PARA LISTAR TODOS OS PRODUTOS
 
 routes.post('/categories', adminMiddleware, upload.single('file'), CategoryController.store); // ROTA PARA CRIAR UMA CATEGORIA
 routes.put('/categories/:id', adminMiddleware, upload.single('file'), CategoryController.update); // ROTA PARA ATUALIZAR UMA CATEGORIA
-routes.get('/categories', CategoryController.index); // ROTA PARA LISTAR TODAS AS CATEGORIAS
 
 routes.post('/orders', OrderController.store); // ROTA PARA CRIAR UM PEDIDO
 routes.get('/orders', OrderController.index); // ROTA PARA LISTAR TODOS OS PEDIDOS
