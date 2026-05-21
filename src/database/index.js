@@ -6,7 +6,7 @@ import Category from "../app/models/Category.js";
 import Product from "../app/models/Product.js"; // IMPORTANDO A MODEL PRODUCT
 import User from "../app/models/User.js"; // IMPORTANDO A MODEL USER
 import databaseConfig from "../config/database.cjs"; // IMPORTANDO AS CONFIGURAÇÕES DO BANCO DE DADOS
-
+import 'dotenv/config'; // Garante que o arquivo consiga ler o seu .env
 
 const models = [User, Product, Category]; // ADICIONANDO AS MODELS EM UM ARRAY
 
@@ -16,8 +16,22 @@ class Database {
         this.mongo(); // CHAMANDO O MÉTODO MONGO PARA CONECTAR COM O MONGODB
     }
 
-    init() {
-        this.connection = new Sequelize(databaseConfig); // CRIANDO A CONEXÃO COM O BANCO DE DADOS USANDO AS CONFIGURAÇÕES IMPORTADAS
+  init() {
+        // SE TIVER DATABASE_URL NO .ENV (NEON), USA ELA. CASO CONTRÁRIO, USA A CONFIGURAÇÃO LOCAL DO .CJS
+        if (process.env.DATABASE_URL) {
+            this.connection = new Sequelize(process.env.DATABASE_URL, {
+                dialect: 'postgres',
+                dialectOptions: {
+                    ssl: {
+                        require: true,
+                        rejectUnauthorized: false // Necessário para funcionar com o Neon e instâncias na nuvem
+                    }
+                }
+            });
+        } else {
+            this.connection = new Sequelize(databaseConfig);
+        }
+
         models
           .map((model) => model.init(this.connection)) // INICIALIZANDO AS MODELS E PASSANDO A CONEXÃO COM O BANCO
           .map(
